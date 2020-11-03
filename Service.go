@@ -68,7 +68,7 @@ import (
 		args := make(map[string]string)
 		for pos, bit := range pathBits {
 
-			if match && bit[0:1] == ":" {
+			if match && len(bit) > 1 && bit[0:1] == ":" {
 
 				args[bit[1:]] = urlBits[pos]
 
