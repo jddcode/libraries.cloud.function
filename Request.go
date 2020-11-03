@@ -11,6 +11,7 @@ import (
 		output http.ResponseWriter
 		args map[string]string
 		Params parameter
+		Storage FireStoreClient
 		Log Log
 		body []byte
 	}
