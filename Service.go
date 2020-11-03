@@ -27,8 +27,8 @@ import (
 
 		if err != nil {
 
-			w.WriteHeader(200)
-			w.Write([]byte("No provider could be found for URL: " + r.URL.Path))
+			w.WriteHeader(404)
+			w.Write([]byte("No provider could be found"))
 			return
 		}
 
