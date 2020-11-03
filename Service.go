@@ -40,7 +40,7 @@ import (
 
 		if len(os.Getenv("BuildDate")) > 0 {
 
-			w.Header().Set("X-Build-Date", os.Getenv("BuildDate"))
+			w.Header().Set("Build-Date", os.Getenv("BuildDate"))
 		}
 
 		s.corsInjector(w)
