@@ -32,7 +32,7 @@ import (
 			return
 		}
 
-		req := Request{ input: r, output: w, params: params }
+		req := Request{ input: r, output: w, args: params }
 		response := handler(req)
 
 		w.WriteHeader(response.StatusCode)

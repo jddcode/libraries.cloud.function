@@ -9,20 +9,21 @@ import (
 
 		input *http.Request
 		output http.ResponseWriter
-		params map[string]string
+		args map[string]string
+		Params parameter
 		Log Log
 		body []byte
 	}
 
 	func (r *Request) ArgExists(name string) bool {
 
-		_, exists := r.params[name]
+		_, exists := r.args[name]
 		return exists
 	}
 
 	func (r *Request) GetArg(name string) string {
 
-		arg, exists := r.params[name]
+		arg, exists := r.args[name]
 
 		if !exists {
 
