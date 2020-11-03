@@ -36,14 +36,15 @@ import (
 		req := Request{ input: r, output: w, args: params }
 		response := handler(req)
 
-		w.WriteHeader(response.StatusCode)
-
 		if len(os.Getenv("BuildDate")) > 0 {
 
-			w.Header().Set("Build-Date", os.Getenv("BuildDate"))
+			w.Header().Set("X-Build-Date", os.Getenv("BuildDate"))
 		}
 
 		s.corsInjector(w)
+
+		// Send out the response
+		w.WriteHeader(response.StatusCode)
 		w.Write(response.Content)
 	}
 
