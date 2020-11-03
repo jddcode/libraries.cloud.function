@@ -9,6 +9,7 @@ import (
 
 		input *http.Request
 		output http.ResponseWriter
+		params map[string]string
 		body []byte
 	}
 
