@@ -3,6 +3,7 @@ package cloudFunction
 import (
 	"errors"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -36,6 +37,13 @@ import (
 		response := handler(req)
 
 		w.WriteHeader(response.StatusCode)
+
+		if len(os.Getenv("BuildDate")) > 0 {
+
+			w.Header().Set("X-Build-Date", os.Getenv("BuildDate"))
+		}
+
+		s.corsInjector(w)
 		w.Write(response.Content)
 	}
 
@@ -83,6 +91,13 @@ import (
 		}
 
 		return match, args
+	}
+
+	func (s *Service) corsInjector(w http.ResponseWriter) {
+
+		w.Header().Set("Access-Control-Allow-Headers","*")
+		w.Header().Set("Access-Control-Allow-Origin","*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS")
 	}
 
 	type route struct {
